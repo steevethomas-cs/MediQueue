@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediQueue | Emergency Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        <div class="brand-icon">✚</div>
+        <div>
+            <h1>MediQueue</h1>
+            <p>Emergency Patient Management</p>
+        </div>
+    </div>
+    <span class="system-status">● System Online</span>
+</header>
+
+<main class="container">
+
+    <section class="welcome">
+        <div>
+            <h2>Emergency Dashboard</h2>
+            <p>Manage patient records and estimated service order.</p>
+        </div>
+        <div class="date" id="currentDate"></div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-card">
+            <span>Total Patients</span>
+            <h2 id="totalPatients">0</h2>
+        </div>
+        <div class="stat-card critical">
+            <span>Critical Patients</span>
+            <h2 id="criticalPatients">0</h2>
+        </div>
+        <div class="stat-card waiting">
+            <span>Waiting</span>
+            <h2 id="waitingPatients">0</h2>
+        </div>
+        <div class="stat-card completed">
+            <span>Completed</span>
+            <h2 id="completedPatients">0</h2>
+        </div>
+    </section>
+
+    <section class="main-grid">
+
+        <div class="panel">
+            <h3>Register New Patient</h3>
+            <p class="muted">Enter patient information below.</p>
+
+            <form id="patientForm">
+                <label for="patientName">Patient Name</label>
+                <input type="text" id="patientName"
+                       placeholder="Enter full name" required>
+
+                <div class="form-row">
+                    <div>
+                        <label for="patientAge">Age</label>
+                        <input type="number" id="patientAge"
+                               min="0" max="130" placeholder="Age" required>
+                    </div>
+                    <div>
+                        <label for="patientCondition">Condition</label>
+                        <input type="text" id="patientCondition"
+                               placeholder="Medical condition" required>
+                    </div>
+                </div>
+
+                <label for="patientPriority">Priority Level</label>
+                <select id="patientPriority" required>
+                    <option value="1">1 - Critical</option>
+                    <option value="2">2 - High</option>
+                    <option value="3" selected>3 - Moderate</option>
+                    <option value="4">4 - Low</option>
+                </select>
+
+                <button type="submit" class="primary-btn">
+                    + Register Patient
+                </button>
+            </form>
+        </div>
+
+        <div class="panel">
+            <h3>Emergency Queue</h3>
+            <p class="muted">
+                Ordered by priority, then arrival time.
+            </p>
+
+            <div class="queue-list" id="queueList">
+                <p class="empty">No patients in the queue.</p>
+            </div>
+
+            <button id="serveNextBtn" class="primary-btn">
+                Serve Next Patient
+            </button>
+
+            <p class="note">
+                This queue is an academic demonstration and does
+                not replace professional medical triage.
+            </p>
+        </div>
+    </section>
+
+    <section class="panel records-panel">
+        <div class="records-header">
+            <div>
+                <h3>Patient Records</h3>
+                <p class="muted">Search, sort and update patient status.</p>
+            </div>
+
+            <input type="search" id="searchInput"
+                   placeholder="Search name, ID or condition...">
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Patient</th>
+                        <th>Age</th>
+                        <th>Condition</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="patientTable">
+                    <tr>
+                        <td colspan="7" class="empty">
+                            No patient records available.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <p>MediQueue © 2026 | Academic Project</p>
+        <p>For demonstration only — not for clinical decision-making.</p>
+    </footer>
+
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
